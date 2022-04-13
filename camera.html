@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>SEGP 9A_Camera</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index.html"> <img src="images/frontpagelogo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="intro.html">INTRODUCTION</a></li>
+                    <li><a href="camera.html">CAMERA</a></li>
+                    <li><a href="library.php">LIBRARY</a></li>
+                    <li><a href="monitor.html">MONITOR</a></li>
+                    
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <h1>Camera</h1>
+    </section>
+
+        <!------------camera---------->
+
+        <section class="location">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5483755891573!2d101.87248071475683!3d2.9451804978549374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdce0fd89c5829%3A0xca94557719d2191!2sUniversity%20of%20Nottingham%20Malaysia!5e0!3m2!1sen!2smy!4v1646123049476!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </section>
+
+        <!-------stream video via webcam------->
+        <div class="video-wrap">
+            <video id="video" playsinline autoplay></video>
+        </div>
+
+        <!---------Trigger canvas web API------>
+        <div class="controller">
+            <button id="snap"class="hero-btn red-btn">Capture</button>
+        </div>
+
+        <!--------Webcam Video snapshot------>
+        <canvas id="canvas" width="640" height="480"></canvas>
+
+
+        <script>
+
+            'use strict';
+
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const snap = document.getElementById('snap');
+            const errorMsgElement = document.getElementById('spanErrorMsg');
+
+            const constraints = {
+                audio: true,
+                video:{
+                    width: 1280, height: 720
+                }
+            };
+
+            // Access Webcam
+            async function init(){
+                try{
+                    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    handleSuccess(stream);
+                }
+                catch(e){
+                    errorMsgElement.innerHTML = 'navigator.getUserMedia.error:${e.toString()}';
+                }
+            }
+
+            //success
+            function handleSuccess(stream){
+                window.stream = stream;
+                video.srcObject = stream;
+            }
+
+            //Load in it
+            init();
+
+            //Draw Image
+            var context = canvas.getContext('2d');
+            snap.addEventListener("click", function(){
+                context.drawImage(video, 0, 0, 640, 480);
+             });
+
+        </script>
+
+    <!-----------Javascript for Toggle Menu------->
+    <script>
+
+        var navLinks = document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+
+
+    <!------Footer------>
+
+    <section class="footer">
+        <h4>Follow Us</h4>
+            <div class="icons">
+                     <i class="fa fa-facebook"></i>
+                     <i class="fa fa-twitter"></i>
+                     <i class="fa fa-instagram"></i>
+                     <i class="fa fa-snapchat"></i>
+                     <i class="fa fa-youtube"></i>
+                </div>
+             </section>
+
+
+</body>
+</html>

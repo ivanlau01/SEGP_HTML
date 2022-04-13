@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>SEGP 9A_Monitor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <section class="sub-header">
+    <nav>
+        <a href="index.html"> <img src="images/frontpagelogo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+              <li><a href="index.html">HOME</a></li>
+              <li><a href="intro.html">INTRODUCTION</a></li>
+              <li><a href="camera.html">CAMERA</a></li>
+              <li><a href="library.php">LIBRARY</a></li>
+              <li><a href="monitor.html">MONITOR</a></li>
+                
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Results</h1>
+</section>
+
+    <!-------- Monitor content------->
+            <html>
+              <head>
+
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+                  google.charts.load('current', {'packages':['corechart']});
+                  google.charts.setOnLoadCallback(drawChart);
+            
+                  function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                      ['Time', 'Current Data', 'Warning Line'],
+                      ['12:00',  10, 20],
+                      ['13:00',  11, 20],
+                      ['14:00',  6, 20],
+                      ['15:00',  23, 20]
+                    ]);
+            
+                    var options = {
+                      title: 'Water Quality Data',
+                      curveType: 'function',
+                      legend: { position: 'bottom' },
+                      width: 900,
+                      height: 500,
+                      vAxis: {minValue:0, maxValue:25}
+                    };
+            
+                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                  
+
+                    chart.draw(data, options);
+
+                  }
+                </script>
+              
+              <body>
+                
+                <style>
+    
+                  h1{text-align: center;}
+                  p{text-align: center;}
+                </style>
+               
+                <div id="curve_chart" ></div>
+               
+                <div class="right-content">
+                <div id="class">
+                  
+                      <br>
+                    
+                      <h1>WATER INFORMATION</h1>
+                      <br>
+                      <p>Date: 28/02/2022</p>
+                      <br>
+                      <p>Time: 15:00:00</p>
+                      <br>
+                      <p>Color: Brown</p>
+                      <br>
+                      <p>Similarity: 80% Similar To 300ml Of Coke</p>
+                      <br>
+                  </div>    
+                  </div>
+              </body>
+
+    <!-----------Javascript for Toggle Menu------->
+        <script>
+          var navLinks = document.getElementById("navLinks");
+          function showMenu(){
+              navLinks.style.right = "0";
+          }
+          function hideMenu(){
+              navLinks.style.right = "-200px";
+          }
+      </script>
+  
+    <!------Footer------>
+
+    <section class="footer">
+      <h4>About Us</h4>
+      <div class="icons">
+          <i class="fa fa-facebook"></i>
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-instagram"></i>
+          <i class="fa fa-snapchat"></i>
+          <i class="fa fa-youtube"></i>
+      </div>
+  </section>
+</head>
+</html>
+      
